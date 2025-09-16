@@ -37,3 +37,6 @@ create db
 create .net gitignore file
 
 > dotnet new gitignore
+
+delete database
+> dotnet ef database drop -p Infrastructure -s API
