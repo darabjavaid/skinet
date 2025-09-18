@@ -6,6 +6,13 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.button-overrides((
+    filled-container-shape: '6px',
+    outlined-container-shape: '6px'
+  ));
+}
 
 html {
   @include mat.theme((
@@ -37,3 +44,5 @@ body {
 /* You can add global styles to this file, and also import other style files */
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

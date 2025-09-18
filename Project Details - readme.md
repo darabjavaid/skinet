@@ -73,3 +73,11 @@ install angular material
 
 install tailwind css
 > npm install tailwindcss @tailwindcss/postcss
+
+-Create componnet
+
+- ng g c layout/header --dry-run `(--dry-run = tells what will be created)`
+> ng g c layout/header --skip-tests
+
+* vs code settings > compact folders (uncheck)
+* vs code settings > brackets auto close tag
