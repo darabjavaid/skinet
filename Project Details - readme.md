@@ -81,3 +81,5 @@ install tailwind css
 
 * vs code settings > compact folders (uncheck)
 * vs code settings > brackets auto close tag
+
+> ng g s core/services/shop --skip-tests

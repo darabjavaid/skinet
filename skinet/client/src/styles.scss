@@ -46,3 +46,6 @@ body {
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+.match-input-height{
+  height: var(--mat-form-field-container-height) !important;
+}
