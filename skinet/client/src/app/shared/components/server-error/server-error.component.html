@@ -1,0 +1,16 @@
+<div class="flex flex-col">
+  <h1 class="text-2xl font-bold">Internal Server Error</h1>
+  @if(error){
+    <h5 class="text-red-600">Error: {{error.message}}</h5>
+    <p class="font-bold mb-2">error from server, not angular</p>
+    <p class="mb-2">what to do next?</p>
+    <ol class="list-decimal ml-5 mb-4">
+      <li>check netwrok tab in chrome dev  tools</li>
+      <li>reproduce in postman</li>
+    </ol>
+    <h5 class="text-lg font-semibold mb-2">stack trace</h5>
+    <mat-card class="p-4 bg-white">
+      <code>{{error.details}}</code>
+    </mat-card>
+  }
+</div>

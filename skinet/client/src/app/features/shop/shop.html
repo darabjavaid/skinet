@@ -1,7 +1,7 @@
 @if (products) {
   <div class="flex flex-col gap-3">
     <div class="flex justify-between pb-2">
-      <mat-paginator class="bg-green-100" (page)="handlePageEvent($event)" [length]="products.count"
+      <mat-paginator class="bg-gray-100" (page)="handlePageEvent($event)" [length]="products.count"
         [pageSize]="shopParams.pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
         [pageIndex]="shopParams.pageNumber - 1">
       </mat-paginator>
