@@ -3,3 +3,10 @@
 .container {
   @apply mx-auto px-5
 }
+
+@layer base{
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}

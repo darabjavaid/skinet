@@ -83,3 +83,9 @@ install tailwind css
 * vs code settings > brackets auto close tag
 
 > ng g s core/services/shop --skip-tests
+
+install nano id
+> npm install nanoid
+
+create environemtn config files
+> ng g environments

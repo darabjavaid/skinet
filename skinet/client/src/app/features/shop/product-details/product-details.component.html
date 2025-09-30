@@ -17,18 +17,21 @@
         <p class="mt-4 text-gray-700">
           {{product.description}}
         </p>
+
         <div class="flex gap-4 mt-6">
-          <button mat-flat-button class="match-input-height">
+          <button mat-flat-button class="match-input-height" [disabled]="quantityInCart === quantity" (click)="updateCart()">
             <mat-icon>add_shopping_cart</mat-icon>
-            add to cart
+            {{getButtonText()}}
           </button>
 
           <mat-form-field appearance="outline" class="flex">
             <mat-label>Quantity</mat-label>
-            <input matInput type="number" value="1" placeholder="Quantity" />
+            <input matInput type="number" min="0" [(ngModel)]="quantity" placeholder="Quantity" />
           </mat-form-field>
-
           <mat-divider></mat-divider>
+
+          <p> you have {{quantityInCart}} of this item in your cart</p>
+
         </div>
       </div>
     </div>
