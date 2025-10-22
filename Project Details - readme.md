@@ -89,3 +89,13 @@ install nano id
 
 create environemtn config files
 > ng g environments
+
+
+--------------add identity ------
+update the dbcotext
+
+add migration
+> dotnet ef migrations add IdentityAdded -s API -p Infrastructure
+
+add migration for Address entity
+> dotnet ef migrations add AddressAdded -s API -p Infrastructure
