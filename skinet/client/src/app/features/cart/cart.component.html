@@ -1,5 +1,8 @@
 <section>
-  <div class="mx-auto max-w-screen-xl">
+  @if(cartService.cart() == null || cartService.cart()?.items?.length == 0) {
+    <app-empty-state></app-empty-state>
+  } @else {
+    <div class="mx-auto max-w-screen-xl">
     <div class="flex w-full items-start gap-6 mt-32">
       <div class="w-3/4">
         @for (item of cartService.cart()?.items; track item.productId) {
@@ -11,4 +14,5 @@
       </div>
     </div>
   </div>
+  }
 </section>
