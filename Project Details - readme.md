@@ -99,3 +99,14 @@ add migration
 
 add migration for Address entity
 > dotnet ef migrations add AddressAdded -s API -p Infrastructure
+
+add migration for DeliveryMethods entity
+> dotnet ef migrations add DeliveryMethodsAdded -s API -p Infrastructure
+
+
+-----------------payments------------
+nuget package:
+strip.net
+
+for client:
+client > npm install @stripe/stripe-js
