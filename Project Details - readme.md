@@ -110,3 +110,8 @@ strip.net
 
 for client:
 client > npm install @stripe/stripe-js
+
+
+
+add migration for DeliveryMethods entity
+> dotnet ef migrations add OrderAggregateAdded -s API -p Infrastructure
