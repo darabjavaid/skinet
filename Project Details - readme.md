@@ -115,3 +115,26 @@ client > npm install @stripe/stripe-js
 
 add migration for DeliveryMethods entity
 > dotnet ef migrations add OrderAggregateAdded -s API -p Infrastructure
+
+> ng g c features/orders/order --skip-tests --flat
+
+-------------stripe local testing ---------------------
+see documenttation: 
+https://dashboard.stripe.com/acct_1SPglNBVm2jPVH4O/test/workbench/webhooks
+https://docs.stripe.com/stripe-cli/install?install-method=windows
+
+1 Download the Stripe CLI and log in with your Stripe account
+$ stripe login
+
+2 Forward events to your destination -- this gives the stripe secret key to verify with
+$ stripe listen --forward-to https://localhost:5001/api/payment/webhook -e payment_intent.succeeded
+
+
+
+3 Trigger events with the CLI
+$ stripe trigger payment_intent.succeeded
+
+
+----install signalr on client---
+
+> npm install @microsoft/signalr

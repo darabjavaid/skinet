@@ -1,0 +1,79 @@
+@if (order) {
+<div class="mx-auto mt-25 max-w-3xl">
+  <h2 class="font-semibold text-2xl mb-6 text-center">Summary of Order # {{ order.id }}</h2>
+  <mat-card>
+    <mat-card-content>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <h4 class="text-lg font-semibold">Order information</h4>
+          <dl>
+            <dt><strong>Order Date:</strong></dt>
+            <dd>{{ order.orderDate | date:'medium' }}</dd>
+            <dt><strong>Status:</strong></dt>
+            <dd>{{ order.status }}</dd>
+            <dt><strong>User Email:</strong></dt>
+            <dd>{{ order.buyerEmail }}</dd>
+          </dl>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold">Billing & Delivery information</h4>
+          <dl>
+            <dt class="font-medium">Shipping Address</dt>
+            <dd class="mt-1 text-gray-500">{{order.shippingAddress | address}}</dd>
+            <dt class="font-medium">Payment Details</dt>
+            <dd class="mt-1 text-gray-500">{{order.paymentSummary | paymentCard}}</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="mt-6 mx-auto">
+        <div class="border-b border-gray-200">
+          <table class="w-full text-center">
+            <tbody class="divide-y divide-gray-200">
+              @for (item of order.orderItems; track item.productId) {
+              <tr>
+                <td class="py-4">
+                  <div class="flex items-center gap-4">
+                    <img src="{{item.pictureUrl}}" alt="product image" class="w-16 h-16 object-cover rounded" />
+                    <span>{{item.productName}}</span>
+                  </div>
+                </td>
+                <td class="p-4">x {{item.quantity}}</td>
+                <td class="p-4 text-right">{{item.price | currency}}</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="space-y-4 rounded-lg border border-gray-200 bg-white shadow-sm  p-4">
+        <p class="text-xl font-semibold">Order Summary</p>
+        <div class="space-y-4">
+          <div class="space-y-2">
+            <dl class="flex items-center justify-between gap-4">
+              <dt class="font-medium text-gray-500">Subtotal</dt>
+              <dd class="font-medium text-gray-900">{{order.subtotal | currency}}</dd>
+            </dl>
+            <dl class="flex items-center justify-between gap-4">
+              <dt class="font-medium text-gray-500">Delivery Fee</dt>
+              <dd class="font-medium text-gray-900">{{order.total - order.subtotal | currency}}</dd>
+            </dl>
+          </div>
+
+          <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2">
+            <dt class="font-medium text-gray-500">Total</dt>
+            <dd class="font-medium text-gray-900">{{order.total | currency}}</dd>
+          </dl>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button routerLink="/orders">Back to Orders</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+} @else {
+<div class="mx-auto mt-32 text-center">
+  <p>Loading order details...</p>
+</div>
+}

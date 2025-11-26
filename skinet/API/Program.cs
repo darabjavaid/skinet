@@ -1,4 +1,5 @@
 using API.Middleware;
+using API.SignalR;
 using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
@@ -37,6 +38,7 @@ builder.Services.AddIdentityApiEndpoints<AppUser>()
     .AddEntityFrameworkStores<StoreContext>();
 
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -45,9 +47,14 @@ app.UseMiddleware<ExceptionMiddleware>(); // should be first, at top of http req
 
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://localhost:4200", "http://localhost:4200"));
 
+app.UseAuthentication(); // should be before UseAuthorization
+app.UseAuthorization(); // should be after UseAuthentication
+
 app.MapControllers();
 
 app.MapGroup("api").MapIdentityApi<AppUser>(); // api/login
+
+app.MapHub<NotificationHub>("/hub/notifications");
 
 try
 {

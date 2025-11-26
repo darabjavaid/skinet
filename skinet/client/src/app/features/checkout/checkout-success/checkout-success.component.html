@@ -1,3 +1,4 @@
+@if(signalRService.orderSignal(); as order){
 <section class="bg-white py-16">
 
   <div class="max-w-screen-2xl mx-auto px-4">
@@ -5,7 +6,40 @@
       <mat-icon class="icon-display mb-8">check_circle</mat-icon>
       <p class="text-gray-600 text-lg font-semibold mb-4">Your fake order has been placed successfully</p>
       <button mat-flat-button color="primary" routerLink="/shop">Continue Shopping</button>
+      <button mat-flat-button color="primary" routerLink="/orders/{{order.id}}">View Order</button>
+    </div>
+  </div>
+  <div>
+    <div class="flex flex-col items-center justify-center py-12 w-full">
+      <h2 class="font-semibold text-2xl mb-6 text-center">Order #{{order.id}}</h2>
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <dl class="flex items-center justify-between gap-4">
+            <dt class="font-medium text-gray-500">Order Date</dt>
+            <dd class="font-medium text-gray-900">{{order.orderDate | date:'short'}}</dd>
+          </dl>
+          <dl class="flex items-center justify-between gap-4">
+            <dt class="font-medium text-gray-500">Payment Method</dt>
+            <dd class="font-medium text-gray-900">{{order.paymentSummary | paymentCard}}</dd>
+          </dl>
+          <dl class="flex items-center justify-between gap-4">
+            <dt class="font-medium text-gray-500">Address</dt>
+            <dd class="font-medium text-gray-900">{{order.shippingAddress | address}}</dd>
+          </dl>
+        </div>
+        <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2">
+          <dt class="font-medium text-gray-500">Amount</dt>
+          <dd class="font-medium text-gray-900">{{order.total | currency}}</dd>
+        </dl>
+      </div>
     </div>
   </div>
 
 </section>
+}
+@else{
+<div class="flex flex-col items-center justify-center py-12 w-full">
+  <mat-progress-spinner mode="indeterminate" diameter="30"></mat-progress-spinner>
+  <p class="text-gray-600 text-lg font-semibold mt-4">Processing your order... please wait!</p>
+</div>
+}
