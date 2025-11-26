@@ -51,6 +51,7 @@ public class PaymentController
             if (stripeEvent.Data.Object is not PaymentIntent intent) return BadRequest("Invalid PaymentIntent object in event data");
 
             await HandlePaymentIntentEvent(intent);
+            logger.LogInformation("**************Returning OKAY**************");
             return Ok();
         }
         catch (StripeException strEx)
@@ -106,6 +107,10 @@ public class PaymentController
         else if (intent.Status == "payment_failed")
         {
             logger.LogInformation($"Payment Failed: {intent.Id}");
+        }
+        else
+        {
+            logger.LogInformation($"Unhandled PaymentIntent status: {intent.Status} for Id: {intent.Id}");
         }
     }
 

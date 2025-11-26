@@ -129,6 +129,9 @@ $ stripe login
 2 Forward events to your destination -- this gives the stripe secret key to verify with
 $ stripe listen --forward-to https://localhost:5001/api/payment/webhook -e payment_intent.succeeded
 
+To disable HTTPS certificate verification, use the --skip-verify
+$ stripe listen --forward-to https://localhost:5001/api/payment/webhook -e payment_intent.succeeded --skip-verify
+
 
 
 3 Trigger events with the CLI
