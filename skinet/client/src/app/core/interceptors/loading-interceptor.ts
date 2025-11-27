@@ -2,6 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { delay, finalize } from 'rxjs';
 import { BusyService } from '../services/busy.service';
+import { environment } from '../../../environments/environment';
 
 export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
   const busyService = inject(BusyService);
@@ -9,7 +10,7 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
   busyService.busy();
 
   return next(req).pipe(
-    delay(500),
+    (environment.production ? delay(0) : delay(1000)),
     finalize(()=> busyService.idle())
   );
 };

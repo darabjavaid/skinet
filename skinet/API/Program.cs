@@ -50,11 +50,20 @@ app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrig
 app.UseAuthentication(); // should be before UseAuthorization
 app.UseAuthorization(); // should be after UseAuthentication
 
+//for production
+app.UseDefaultFiles(); // for index.html
+app.UseStaticFiles(); // for wwwroot (having static files like js, css, images)
+// for production end
+
+
 app.MapControllers();
 
 app.MapGroup("api").MapIdentityApi<AppUser>(); // api/login
 
 app.MapHub<NotificationHub>("/hub/notifications");
+
+//for production routes for angular, should be last, after all other routes that .net api won't handle
+app.MapFallbackToController("Index", "Fallback");
 
 try
 {

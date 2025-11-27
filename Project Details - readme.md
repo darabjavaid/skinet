@@ -141,3 +141,33 @@ $ stripe trigger payment_intent.succeeded
 ----install signalr on client---
 
 > npm install @microsoft/signalr
+
+--------production build---------
+- client build
+set output folder in angular.json
+
+> ng build 
+
+- api build
+handle client static files wwwroot in program.cs
+handle wwwroot routes in fallback controller
+handle seeding data (.json files inclusion in project)
+
+test the seedata by dropping the db
+> dotnet ef database drop -s API -p Infrastructure
+
+> dotnet build
+> dotnet run
+
+- use upstash.com for cloud redis as free option
+redis dev conn string: localhost
+redit prod connection string: host:port,password=pw,ssl=true,abortConnection=False
+
+ - create azure resource group
+ create web app
+ create redis db connection
+ create sql server db connection
+ install azure extension and sign in
+
+ publish app
+ > dotnet publish -c Release -o ./bin/Publish
