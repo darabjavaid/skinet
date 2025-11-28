@@ -170,4 +170,11 @@ redit prod connection string: host:port,password=pw,ssl=true,abortConnection=Fal
  install azure extension and sign in
 
  publish app
- > dotnet publish -c Release -o ./bin/Publish
+ > `dotnet publish -c Release -o ./bin/Publish`
+
+ --updating angular version
+
+ check for outdated client dependencies -= npm outdated
+ to update
+ `npm i @package-name@latest`
+ example: `npm i @stripe/stripe-js@latest`
